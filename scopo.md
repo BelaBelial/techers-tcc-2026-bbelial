@@ -7,6 +7,8 @@ $\rightarrow$ [Orientacoes sobre modelagem e plano de desenvolvimento](https://a
 
 $\rightarrow$ [Source de orientacoes](https://dontpad.com/profjoaosexta16)
 
+$\rightarrow$ [Modelagem de dados pronta](https://app.notion.com/p/2026-3deb8432ba1280938644cf9ab011f13e)
+
 ### Tree e Arquivos
 - `scopo.md` - planer geral localizado na raiz da pasta do projeto
 
