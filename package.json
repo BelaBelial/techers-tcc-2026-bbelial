@@ -17,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/BelaBelial/techers-tcc-2026-bbelial/issues"
   },
-  "homepage": "https://github.com/BelaBelial/techers-tcc-2026-bbelial#readme"
+  "homepage": "https://github.com/BelaBelial/techers-tcc-2026-bbelial#readme",
+  "dependencies": {
+    "dotenv": "^18.0.5",
+    "drizzle-orm": "^0.45.3",
+    "postgres": "^3.4.9"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.11"
+  }
 }
