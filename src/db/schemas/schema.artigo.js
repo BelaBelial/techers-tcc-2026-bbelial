@@ -6,7 +6,7 @@ import { user } from "./schema.user.js"
 export const artigos = pgTable("artigos", {
     id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
     //a linha do onDelete cascade basicamente configura um comportamento das tabelas com chave estrangeira 
-    //isso ocorre a partir da funcao "referentes()"
+    //isso ocorre a partir da funcao "references()"
     //isso basicamente significa que se o elemento/tabela pai for deletado, este elemento tambem sera
     user_id: uuid("user_id").notNull().references(() => user.id, {onDelete: "cascade"}), 
     autor: text("autor").notNull(),
