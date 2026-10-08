@@ -1,10 +1,11 @@
-```/projeto
+/projeto
+├── node_modules
 ├── src
-│   ├── db
-│   └── config
-│       └── schemas
-│           ├── schema.user.js
-│           └── schema.artigos.js
+│   └── db
+│       ├── schemas
+│       │   ├── schema.user.js
+│       │   └── schema.artigos.js
+│       └── index.js
 ├── contributing.md
 ├── README.md
 ├── scopo.md
