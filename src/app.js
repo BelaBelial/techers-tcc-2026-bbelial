@@ -1,10 +1,10 @@
 import express from "express"
 import "dotenv/config"
-import { database } from "./db/index.js"
+import { db as database } from "./db/index.js"
 
 import { users } from "./db/schemas/schema.users.js"
 import { artigos } from "./db/schemas/schema.artigos.js"
-import { user } from "./schemas/schema.user"
+import { user } from "./db/schemas/schema.user"
 import { between } from "drizzle-orm"
 
 const server = express();
@@ -16,6 +16,8 @@ server.post('/login', (req, res) => {
     //se nao existir, encaminhar o usuario para criar sua conta (exibir mensagem de aviso)
 });
 
+//criar novo user e adicionar ele no banco de dados se ele ja nao exisitr.
+//verificar se o user ja existe no bando de dados
 server.post('/signin', async (req, res) => {
     try{
         const new_user = {
@@ -25,11 +27,11 @@ server.post('/signin', async (req, res) => {
 
         //se o username for vazio, ou o tipo nao foi uma string (so numeros), ou for um dado indefinido
         if(new_user.username == "" || typeof new_user.username !== 'string' || new_user.username === undefined){
-            throw new Error('username not valid'); //1 significa queo username foi vazio
+            throw new Error('Username not valid'); //1 significa que o username foi vazio
         }
         //se a senha for uma string ou for nao definida (vazio)
         if(new_user.senha === undefined || typeof new_user.senha === 'string'){
-            throw new Error('password not valid'); //2 significa que a senha 
+            throw new Error('Password not valid'); //2 significa que a senha 
         }
 
         await database.insert(users).values(new_user);
@@ -51,4 +53,4 @@ server.put('/profile', (req, res) => {
     //alterar algum dado do usuario
 });
 
-server.listen(3000, console.log("The server is running..."));
+export default server;
