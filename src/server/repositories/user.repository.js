@@ -1,7 +1,6 @@
 import { eq } from "drizzle-orm"; //para achar o user especifico
 import { db as database } from "../../db/index.js";
-import { users } from "../../db/schemas/schema.user";
-import { repository } from "../repositories/user.repository.js";
+import { user } from "../../db/schemas/schema.user.js";
 
 //busca o user pelo nome e insere ele no banco de dados
 //sao as duas funcoes que o repository esta fazendo, mexendo com o banco de dados
@@ -14,12 +13,25 @@ export const userRepository = {
         //o where aqui serve para achar um usuario especifico. sem isso, o select ia puxar todos os usuarios.
         //o eq serve para verificar se o usuario achado por users.username eh igual ao user do username procurado 
         //o username do user procurado esta sendo passado na funcao findbyusername
-        const res = await database.select().from(users).where(eq(users.username, username));
+        const res = await database.select().from(user).where(eq(user.username, username));
         
         return res[0]; //retornando o primeiro user encontrado ou undefined se ele nao eixistir
     },
 
     async create(newUser){
         return await database.insert(users).values(newUser);
+    },
+
+    //essa funcao ainda nao foi testada nem desenvolvida, fica para depois
+    async del(username){
+        const curuser = await database.select().from(user).where(eq(user.username, username));
+
+        if(curuser[0] === ""){
+            console.error("There is no such user.");
+            return;
+        }
+
+        const deletion = await database.delete(user).where(eq(user.username, username));
+        return deletion;
     }
 };

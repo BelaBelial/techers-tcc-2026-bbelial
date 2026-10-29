@@ -1,5 +1,5 @@
-import { user } from "../../db/schemas/schema.user";
-import { userRepository } from "../repositories/user.repository";
+import { user } from "../../db/schemas/schema.user.js";
+import { userRepository } from "../repositories/user.repository.js";
 
 export const userService = {
     //funcao de sign in 
@@ -40,7 +40,7 @@ export const userService = {
     },
 
     //funcao de login
-    async loginUser(username, senha){
+    async loginUser(username, password){
         try{
             if(username == "" || typeof username !== 'string' || username === undefined){
                 throw new Error('Username not valid');
@@ -75,5 +75,9 @@ export const userService = {
             console.error("An error occurred...", error.mesage);
             throw error;
         }
+    },
+
+    async deleteUser(){
+
     }
 }
