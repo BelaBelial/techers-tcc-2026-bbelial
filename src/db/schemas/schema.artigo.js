@@ -11,4 +11,5 @@ export const artigos = pgTable("artigos", {
     user_id: uuid("user_id").notNull().references(() => user.id, {onDelete: "cascade"}), 
     autor: text("autor").notNull(),
     titulo: text("titulo").notNull(),
+    conteudo: text("conteudo").notNull(),
 });
