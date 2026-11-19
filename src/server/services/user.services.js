@@ -10,7 +10,7 @@ export const userService = {
                 throw new Error('Username not valid');
             }
             //se a senha for uma string ou for nao definida (vazio)
-            if(password === undefined || typeof password === 'string'){
+            if(password === undefined || typeof password !== 'string'){
                 throw new Error('Password not valid'); 
             }
 
@@ -51,7 +51,7 @@ export const userService = {
 
             const curUser = await userRepository.findByUsername(username);
             
-            if(!curUser && curUser.length === 0){
+            if(!curUser || curUser.length !== 0){
                 throw new Error("User not found!");
             }
 
@@ -72,7 +72,7 @@ export const userService = {
             }
         }
         catch(error){
-            console.error("An error occurred...", error.mesage);
+            console.error("An error occurred...", error.message);
             throw error;
         }
     },

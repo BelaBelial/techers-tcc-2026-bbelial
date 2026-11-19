@@ -8,4 +8,4 @@ userRouter.post("/register", getSignin);
 userRouter.post("/login", getLoggin);
 //userRouter.delete("/profile", deleteUser);
 
-export default { userRouter };
+export default userRouter;

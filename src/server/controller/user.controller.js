@@ -14,16 +14,31 @@ getSignin() -> pegar do body o que foi passado como informacoes de signin
 */
 
 export const getLoggin = async (req, res) => {
-    const { username, password } = req.body();
-
-    //pega os dados e passa para a funcao do service
-    const ans = await userService.loginUser(username, password);
-    res.status(200).json(ans);
+    try{
+        const { username, password } = req.body;
+        //pega os dados e passa para a funcao do service
+        const ans = await userService.loginUser(username, password);
+        res.status(200).json(ans);
+    }
+    catch(error){
+        return res.status(401).json({
+            success: false,
+            message: error.message
+        });
+    }
 };
 
 export const getSignin = async (req, res) => {
-    const { username, password } = req.body();
+    try{
+        const { username, password } = req.body();
 
-    const ans = await userService.signInUser(username, password);
-    res.status(200).json(ans);
+        const ans = await userService.signInUser(username, password);
+        res.status(201).json(ans);
+    }
+    catch(error){
+        return res.status(400).json({
+            success: false,
+            message: error.message
+        });
+    }
 };
